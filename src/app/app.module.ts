@@ -17,7 +17,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MainSidebarModule } from "./core/default-layout/main-sidebar/main-sidebar.module";
 import { FooterComponent } from './front/footer/footer.component';
 import { HeaderComponent } from './front/header/header.component';
-import { CoursesComponent } from './front/courses/courses.component';
+import { QuizComponent } from './front/quiz/quiz.component';
 import { AboutComponent } from './front/about/about.component';
 import { NavbarComponent } from './front/navbar/navbar.component';
 import { HomeComponent } from './front/home/home.component';
@@ -38,7 +38,7 @@ import { RegisterFrontComponent } from './front/register-front/register-front.co
     ResetPasswordComponent,
     FooterComponent,
     HeaderComponent,
-    CoursesComponent,
+    QuizComponent,
     AboutComponent,
     NavbarComponent,
     HomeComponent,

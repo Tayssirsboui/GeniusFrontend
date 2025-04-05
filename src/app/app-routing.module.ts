@@ -6,7 +6,7 @@ import { DashboardComponent } from './modules/dashboard/dashboard.component';
 import { ResetPasswordComponent } from './modules/auth/reset-password/reset-password.component';
 import { FrontLayoutComponent } from './front/front-layout/front-layout.component';
 import { AboutComponent } from './front/about/about.component';
-import { CoursesComponent } from './front/courses/courses.component';
+import { QuizComponent } from './front/quiz/quiz.component';
 import { HomeComponent } from './front/home/home.component';
 import { ElementsComponent } from './front/elements/elements.component';
 import { BlogDetailsComponent } from './front/blog-details/blog-details.component';
@@ -22,7 +22,8 @@ const routes: Routes = [
     component: FrontLayoutComponent,
     children: [
       { path: '', component: HomeComponent },
-      { path: 'courses', component: CoursesComponent },
+      { path: 'quiz/:id', component: QuizComponent }, // Use dynamic route for quiz
+      { path: 'quiz', component: QuizComponent },
       { path: 'about', component: AboutComponent },
       { path: 'contact', component: ContactComponent },
       { path: 'blog', component: BlogComponent },

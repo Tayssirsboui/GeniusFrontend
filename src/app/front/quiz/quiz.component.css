@@ -1,0 +1,254 @@
+/* General Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3 {
+    font-weight: bold;
+}
+
+/* Quizzes Area */
+.quizzes-area {
+    padding: 60px 0;
+    background-color: #ffffff;
+}
+
+.section-tittle h2 {
+    color: #333;
+    font-size: 2.5rem;
+}
+
+/* Quiz Card */
+.quiz-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: transform 0.3s ease;
+    border: 1px solid #e0e0e0;
+}
+
+.quiz-card:hover {
+    transform: translateY(-10px);
+}
+
+.quiz-card-body {
+    text-align: center;
+}
+
+.quiz-card-body h3 {
+    font-size: 1.4rem;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.quiz-card-body p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.quiz-card-footer {
+    margin-top: 20px;
+}
+
+.quiz-card-footer .btn-start {
+    background-color: #4c72e1;
+    padding: 12px 20px;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.quiz-card-footer .btn-start:hover {
+    background-color: #3b5ba6;
+}
+
+/* Quiz Question Card */
+.question-card {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.question-card p {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.question-card label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1rem;
+    color: #555;
+}
+
+.question-card input[type="radio"] {
+    margin-right: 10px;
+}
+
+/* Navigation Buttons */
+.navigation-buttons button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+.navigation-buttons .btn-next {
+    background-color: #4c72e1;
+    color: white;
+}
+
+.navigation-buttons .btn-next:hover {
+    background-color: #3b5ba6;
+}
+
+.navigation-buttons .btn-submit {
+    background-color: #28a745;
+    color: white;
+}
+
+.navigation-buttons .btn-submit:hover {
+    background-color: #218838;
+}
+/* View All Results Button */
+.btn-view-results {
+    background-color: #007bff;
+    padding: 12px 30px;
+    color: white;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-view-results:hover {
+    background-color: #0056b3;
+}
+
+/* Test Results Table */
+.test-results-area {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.table {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.table th, .table td {
+    padding: 15px;
+    text-align: center;
+}
+
+.table th {
+    background-color: #007bff;
+    color: white;
+}
+
+.table td {
+    background-color: #fff;
+}
+/* Timer */
+.timer-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+  }
+  
+  .timer-svg {
+    width: 120px;
+    height: 120px;
+    transform: rotate(-90deg);
+  }
+  
+  .timer-bg {
+    fill: none;
+    stroke: #eee;
+    stroke-width: 10;
+  }
+  
+  .timer-progress {
+    fill: none;
+    stroke-width: 10;
+    transition: stroke-dashoffset 0.5s, stroke 0.5s;
+  }
+  
+  .timer-text {
+    fill: black;
+    font-size: 14px;
+    font-weight: bold;
+    transform: rotate(90deg);
+    transform-origin: center;
+  }
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 999;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .modal-popup {
+    background: white;
+    border-radius: 16px;
+    max-width: 400px;
+    width: 90%;
+    padding: 30px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  
+  .modal-header-custom {
+    border-bottom: 1px solid #eee;
+    margin-bottom: 15px;
+  }
+  
+  .modal-title-custom {
+    font-size: 24px;
+    color: #28a745;
+  }
+  
+  .modal-body-custom p {
+    font-size: 18px;
+    margin: 10px 0;
+  }
+  
+  .modal-footer-custom {
+    margin-top: 20px;
+  }
+  
+  .modal-footer-custom .btn {
+    padding: 8px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  
