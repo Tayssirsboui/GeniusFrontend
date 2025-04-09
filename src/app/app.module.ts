@@ -10,7 +10,7 @@ import { SharedAppModule } from './core/shared/shared.module';
 import { RegisterComponent } from './modules/auth/register/register.component';
 import { ResetPasswordComponent } from './modules/auth/reset-password/reset-password.component';
 import { FeatureGuard } from './core/permission/guards/feature.guard';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './core/shared/interceptors/auth.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -68,6 +68,7 @@ import { RegisterFrontComponent } from './front/register-front/register-front.co
     //   provide: LocationStrategy,
     //   useClass: HashLocationStrategy
     // },
+    HttpClient,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
