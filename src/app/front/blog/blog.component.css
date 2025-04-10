@@ -1,0 +1,97 @@
+/* Styles pour un champ de recherche plus long et dynamique */
+.btn.hero-btn {
+    background-color: #ff6600; /* 🔵 couleur bleue par exemple */
+    color: white; /* 🖋️ couleur du texte */
+    border: none;
+  }
+.search-input {
+    width: 100%;
+    padding: 22px 25px;
+    border: 2px solid #ccc;
+    border-radius: 50px;
+    transition: all 0.3s ease-in-out;
+    font-size: 16px;
+    background-color: #f8f8f8;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+}
+.slider-area2 {
+    background-image: url('/assets/img/blog/blog-post-3.webp');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    height: 95vh;
+}
+.search-input:focus {
+    width: 90%;
+    border-color: #388EaC;
+    box-shadow: 0px 0px 10px rgba(76, 175, 80, 0.5);
+}
+
+.search-btn {
+    background-color: #388EaC;
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    font-size: 16px;
+}
+
+.search-btn:hover {
+    background-color: #388EaC;
+}
+
+.input-group-append {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.input-group {
+    position: relative;
+}
+/* Bouton Supprimer */
+.btn-danger {
+    background-color: #f44336; /* Rouge vif */
+    border-radius: 20px;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .btn-danger:hover {
+    background-color: #d32f2f; /* Rouge plus foncé au survol */
+  }
+  
+  /* Modal de confirmation */
+  .modal-content {
+    border-radius: 16px;
+    border: none;
+  }
+  
+  .modal-header {
+    background-color: #36f44f;
+    color: rgba(255, 255, 255, 0.653);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+  
+  .modal-footer .btn {
+    border-radius: 5px;
+  }
+  
+  .modal-footer .btn-danger {
+    background-color: #e53935;
+  }
+  
+
+  /* Effet hover sur les titres des posts */
+.blog-head:hover {
+    color: #ff5722; /* Changer la couleur du titre */
+    transform: scale(1.05); /* Agrandir légèrement */
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  
+  
+  

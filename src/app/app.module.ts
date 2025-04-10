@@ -29,6 +29,7 @@ import { BlogDetailsComponent } from './front/blog-details/blog-details.componen
 import { PreloaderComponent } from './front/preloader/preloader.component';
 import { LoginFrontComponent } from './front/login-front/login-front.component';
 import { RegisterFrontComponent } from './front/register-front/register-front.component';
+import { AddPostComponent } from './front/add-post/add-post.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { RegisterFrontComponent } from './front/register-front/register-front.co
     BlogDetailsComponent,
     PreloaderComponent,
     LoginFrontComponent,
-    RegisterFrontComponent
+    RegisterFrontComponent,
+    AddPostComponent
   ],
   imports: [
     BrowserModule,

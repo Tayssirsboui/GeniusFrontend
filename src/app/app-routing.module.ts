@@ -14,6 +14,7 @@ import { BlogComponent } from './front/blog/blog.component';
 import { ContactComponent } from './front/contact/contact.component';
 import { RegisterFrontComponent } from './front/register-front/register-front.component';
 import { LoginFrontComponent } from './front/login-front/login-front.component';
+import { AddPostComponent } from './front/add-post/add-post.component';
 
 const routes: Routes = [
 
@@ -26,8 +27,10 @@ const routes: Routes = [
       { path: 'about', component: AboutComponent },
       { path: 'contact', component: ContactComponent },
       { path: 'blog', component: BlogComponent },
-      { path: 'blog-details', component: BlogDetailsComponent },
+      { path: 'blog-details/:id', component: BlogDetailsComponent },
       { path: 'elements', component: ElementsComponent },
+      { path: 'add-post', component: AddPostComponent },
+      { path: 'add-post/:id', component: AddPostComponent },
       
     ]
   },
