@@ -29,7 +29,18 @@ import { BlogDetailsComponent } from './front/blog-details/blog-details.componen
 import { PreloaderComponent } from './front/preloader/preloader.component';
 import { LoginFrontComponent } from './front/login-front/login-front.component';
 import { RegisterFrontComponent } from './front/register-front/register-front.component';
-
+import { ProjetsComponent } from './front/projets/projets.component';
+import { MatDialogModule } from '@angular/material/dialog'; 
+import { MatFormFieldModule } from '@angular/material/form-field'; 
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AjouterProjetComponent } from './front/ajouter-projet/ajouter-projet.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { FilterPipe } from './front/shared/filter.pipe';
+import { CollaborationsComponent } from './front/collaborations/collaborations.component';
+import { AjouterCollaborationComponent } from './front/ajouter-collaboration/ajouter-collaboration.component';  
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,7 +60,12 @@ import { RegisterFrontComponent } from './front/register-front/register-front.co
     BlogDetailsComponent,
     PreloaderComponent,
     LoginFrontComponent,
-    RegisterFrontComponent
+    RegisterFrontComponent,
+    ProjetsComponent,
+    AjouterProjetComponent,
+    FilterPipe,
+    CollaborationsComponent,
+    AjouterCollaborationComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,11 +75,19 @@ import { RegisterFrontComponent } from './front/register-front/register-front.co
     DashboardModule,
     SharedAppModule,
     BrowserAnimationsModule,
+    FormsModule, 
+    ReactiveFormsModule,
     NgbModule,
-    MainSidebarModule
+    MainSidebarModule,
+    MatDialogModule, 
+    MatFormFieldModule, 
+    MatInputModule,
+    MatButtonModule,
+    MatSelectModule
 ],
   providers: [
     FeatureGuard,
+    MatDatepickerModule,
     // {
     //   provide: LocationStrategy,
     //   useClass: HashLocationStrategy

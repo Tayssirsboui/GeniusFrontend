@@ -14,6 +14,8 @@ import { BlogComponent } from './front/blog/blog.component';
 import { ContactComponent } from './front/contact/contact.component';
 import { RegisterFrontComponent } from './front/register-front/register-front.component';
 import { LoginFrontComponent } from './front/login-front/login-front.component';
+import { ProjetsComponent } from './front/projets/projets.component';
+import { CollaborationsComponent } from './front/collaborations/collaborations.component';
 
 const routes: Routes = [
 
@@ -24,11 +26,13 @@ const routes: Routes = [
       { path: '', component: HomeComponent },
       { path: 'courses', component: CoursesComponent },
       { path: 'about', component: AboutComponent },
+      { path: 'projets', component: ProjetsComponent },
       { path: 'contact', component: ContactComponent },
       { path: 'blog', component: BlogComponent },
       { path: 'blog-details', component: BlogDetailsComponent },
       { path: 'elements', component: ElementsComponent },
-      
+      { path: 'collaborations', component: CollaborationsComponent },
+
     ]
   },
   {
