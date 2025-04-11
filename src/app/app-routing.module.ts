@@ -42,9 +42,9 @@ const routes: Routes = [
     children: [
       { path: 'users', loadChildren: () => import('./modules/user/user.module').then(m => m.UserModule) },
       {
-        path: 'widgets',
+        path: 'quizzes',
         loadChildren: () =>
-          import('./modules/common/widgets/widgets.module').then((m) => m.WidgetsModule)
+          import('./modules/common/quizzes/quizzes.module').then((m) => m.QuizzesModule)
       },
       {
         path: 'simple-table',

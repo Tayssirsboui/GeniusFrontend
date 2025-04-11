@@ -1,0 +1,445 @@
+/* Quiz Card Styles */
+.quiz-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .quiz-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  }
+  
+  .quiz-card-body {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .quiz-card h3 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .quiz-card p {
+    font-size: 1rem;
+    margin-bottom: 15px;
+    color: #666;
+  }
+  
+  .quiz-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .btn-edit,
+  .btn-delete {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-delete {
+    background-color: #FF5733;
+  }
+  
+  .btn-edit:hover {
+    background-color: #45a049;
+  }
+  
+  .btn-delete:hover {
+    background-color: #e04e2d;
+  }
+  
+  /* Button Styles */
+  .btn-start {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-start:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Responsive Layout */
+  @media (max-width: 768px) {
+    .quiz-card {
+      margin-bottom: 20px;
+      padding: 15px;
+    }
+  
+    .quiz-card h3 {
+      font-size: 1.2rem;
+    }
+  
+    .quiz-card p {
+      font-size: 0.9rem;
+    }
+  }
+  /* Modal Overlay (background) */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  /* Modal Popup */
+.modal-popup {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 600px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  animation: modalShow 0.3s ease-in-out;
+  transition: all 0.3s ease;
+}
+
+/* Modal Header */
+.modal-header-custom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #eee;
+}
+
+.modal-title-custom {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  text-transform: uppercase;
+}
+
+.close-btn {
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  color: #888;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.3s;
+}
+
+.close-btn:hover {
+  color: #333;
+}
+
+/* Modal Body */
+.modal-body-custom {
+  padding: 20px 0;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #555;
+  margin-bottom: 10px;
+  display: block;
+}
+
+input[type="text"], textarea, input[type="number"] {
+  width: 100%;
+  padding: 12px 15px;
+  font-size: 1rem;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  background-color: #fafafa;
+  transition: all 0.3s ease;
+}
+
+input[type="text"]:focus, textarea:focus, input[type="number"]:focus {
+  border-color: #3498db;
+  background-color: #fff;
+  outline: none;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+button[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  background-color: #3498db;
+  color: #fff;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #2980b9;
+}
+
+button[type="submit"]:disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
+}
+
+  
+  /* Form Styles */
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  button[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #218838;
+  }
+  /* Button Style for View Questions */
+.btn-view {
+  background-color: #4CAF50; /* Green color */
+  color: white;
+  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-view:hover {
+  background-color: #45a049; /* Darker green */
+  transform: translateY(-3px);
+}
+
+.btn-view:focus {
+  outline: none;
+}
+
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Modal Popup */
+.modal-popup {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 600px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: translateY(-50px);
+  opacity: 0;
+  animation: modalShow 0.3s forwards;
+}
+
+/* Modal Header */
+.modal-header-custom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.modal-title-custom {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+.close-btn {
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  color: #999;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.close-btn:hover {
+  color: #333;
+}
+
+/* Modal Body */
+.modal-body-custom {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.modal-body-custom p {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.modal-body-custom ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.modal-body-custom li {
+  padding: 5px;
+  font-size: 16px;
+  background-color: #f9f9f9;
+  border-radius: 4px;
+  margin-bottom: 5px;
+}
+
+.modal-body-custom li:hover {
+  background-color: #e0e0e0;
+}
+
+/* Modal Animation */
+@keyframes modalShow {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* Success Popup Styles */
+.success-popup {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #28a745;
+  color: white;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  display: none;
+  animation: slideIn 0.5s ease-out;
+}
+
+.success-popup.active {
+  display: block;
+}
+
+.success-popup .close-btn {
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.success-popup .tick {
+  font-size: 30px;
+  margin-right: 10px;
+  display: inline-block;
+  opacity: 0;
+  transform: scale(0);
+  animation: tickAnimation 0.5s forwards;
+}
+
+.success-popup .tick.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+@keyframes slideIn {
+  from {
+    top: -50px;
+    opacity: 0;
+  }
+  to {
+    top: 20px;
+    opacity: 1;
+  }
+}
+
+@keyframes tickAnimation {
+  from {
+    opacity: 0;
+    transform: scale(0);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+/* Search Bar Styling */
+.search-area {
+  margin: 40px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.search-area input {
+  width: 50%;
+  padding: 12px 20px;
+  font-size: 1.1rem;
+  border: 2px solid #ddd;
+  border-radius: 30px; /* Rounded edges */
+  outline: none;
+  transition: all 0.3s ease;
+  background-color: #f8f8f8; /* Light grey background */
+}
+
+.search-area input::placeholder {
+  color: #aaa;
+  font-size: 1rem;
+}
+
+.search-area input:focus {
+  border-color: #3498db; /* Blue color on focus */
+  background-color: #fff; /* White background on focus */
+}
+
+.search-area input:hover {
+  border-color: #2980b9; /* Darker blue on hover */
+  background-color: #fff; /* White background on hover */
+}
+
+.search-area .search-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #aaa;
+  font-size: 18px;
+}
+

@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class QuizService {
-  private apiUrl = 'http://localhost:8089/backend/api/test';  // Backend URL (adjust if needed)
+  private apiUrl = 'http://localhost:8222/quiz/api/test';  // Backend URL (adjust if needed)
 
   constructor(private http: HttpClient) { }
 
@@ -29,4 +29,24 @@ export class QuizService {
   getTestResults(): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/test-result`);
   }
+  // create test new 
+  createTest(testData: any): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}`, testData);
+  }
+  addQuestionToTest(questionData: any): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/question`, questionData).pipe(
+      catchError((error) => {
+        console.error('Error adding question:', error);  // Log the error
+        return throwError(() => new Error(error.message));
+      })
+    );
+  }
+
+  deleteTest(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/test/${id}`, { responseType: 'text' }); 
+    // We set the responseType to 'text' instead of 'json'
+  }
+  
+  
+  
 }
