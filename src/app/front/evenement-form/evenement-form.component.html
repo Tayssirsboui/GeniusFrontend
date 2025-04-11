@@ -1,0 +1,86 @@
+<!-- Slider Area -->
+<section class="slider-area slider-area2">
+    <div class="slider-active">
+      <div class="slider-height2 d-flex align-items-center bg-cover text-white" style="background-image: url('assets/images/bg-ajouter.jpg'); background-size: cover;">
+        <div class="container text-center">
+          <div class="hero__caption hero__caption2">
+            <h1 class="display-5 fw-bold">Ajouter un Événement</h1>
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb justify-content-center bg-transparent">
+                <li class="breadcrumb-item"><a routerLink="/" class="text-white-50">Accueil</a></li>
+                <li class="breadcrumb-item active text-white" aria-current="page">Ajouter</li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Formulaire -->
+  
+  <!-- Formulaire -->
+  <section class="container my-5">
+    <div class="card form-card shadow-lg p-5 border-0 rounded-4">
+      <form [formGroup]="form" (ngSubmit)="submit()">
+        <div class="row g-4">
+  
+          <!-- Champs dynamiques -->
+          <div class="col-md-6" *ngFor="let field of fields">
+            <label [for]="field.name" class="form-label fs-6 fw-semibold text-dark">
+              {{ field.label }} <span *ngIf="field.required" class="text-danger">*</span>
+            </label>
+  
+            <ng-container [ngSwitch]="field.type">
+              <input *ngSwitchCase="'text'" [type]="field.type" [id]="field.name"
+                class="form-control form-control-lg rounded-3 shadow-sm"
+                [placeholder]="field.placeholder" [formControlName]="field.name" />
+  
+              <input *ngSwitchCase="'number'" [type]="field.type" [id]="field.name"
+                class="form-control form-control-lg rounded-3 shadow-sm"
+                [placeholder]="field.placeholder" [formControlName]="field.name" />
+  
+              <input *ngSwitchCase="'datetime-local'" [type]="field.type" [id]="field.name"
+                class="form-control form-control-lg rounded-3 shadow-sm"
+                [formControlName]="field.name" />
+  
+              <select *ngSwitchCase="'select'" [id]="field.name"
+                class="form-select form-select-lg rounded-3 shadow-sm"
+                [formControlName]="field.name">
+                <option *ngFor="let opt of field.options" [value]="opt.value">{{ opt.label }}</option>
+              </select>
+            </ng-container>
+  
+            <div *ngIf="form.get(field.name)?.invalid && form.get(field.name)?.touched"
+              class="form-text text-danger fst-italic mt-1">
+              {{ field.error }}
+            </div>
+          </div>
+  
+          <div class="col-md-6">
+            <label for="image" class="form-label fs-6 fw-semibold text-dark">
+              Image 
+            </label>
+            <input type="file"
+                   id="image"
+                   class="form-control form-control-lg rounded-3 shadow-sm"
+                   (change)="onFileSelected($event)">
+                   <div *ngIf="imagePreview">
+                    <p>Aperçu </p>
+                    <img [src]="imagePreview" alt="Aperçu de l'image" style="max-width: 200px; max-height: 200px;" />
+                  </div>
+          </div>
+          
+  
+        <!-- Submit -->
+        <div class="text-center mt-5">
+          <button class="btn btn-lg px-5 py-2 fw-bold text-white shadow"
+            type="submit" [disabled]="form.invalid"
+            style="background: linear-gradient(135deg, #7c8fd8, #4c5db5); border: none;">
+            <i class="bi bi-check-circle me-2"></i> Enregistrer l’événement
+          </button>
+        </div>
+      
+    
+  
+  

@@ -29,7 +29,12 @@ import { BlogDetailsComponent } from './front/blog-details/blog-details.componen
 import { PreloaderComponent } from './front/preloader/preloader.component';
 import { LoginFrontComponent } from './front/login-front/login-front.component';
 import { RegisterFrontComponent } from './front/register-front/register-front.component';
-
+import { EvenementListComponent } from './front/evenement-list/evenement-list.component';
+import { EvenementFormComponent } from './front/evenement-form/evenement-form.component';
+import { EvenementDetailComponent } from './front/evenement-detail/evenement-detail.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,7 +54,10 @@ import { RegisterFrontComponent } from './front/register-front/register-front.co
     BlogDetailsComponent,
     PreloaderComponent,
     LoginFrontComponent,
-    RegisterFrontComponent
+    RegisterFrontComponent,
+    EvenementListComponent,
+    EvenementFormComponent,
+    EvenementDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +68,10 @@ import { RegisterFrontComponent } from './front/register-front/register-front.co
     SharedAppModule,
     BrowserAnimationsModule,
     NgbModule,
-    MainSidebarModule
+    MainSidebarModule,
+    ReactiveFormsModule,
+    RouterModule,
+    NgbModalModule,
 ],
   providers: [
     FeatureGuard,
@@ -73,6 +84,7 @@ import { RegisterFrontComponent } from './front/register-front/register-front.co
       useClass: AuthInterceptor,
       multi: true,
     },],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+ 
 })
 export class AppModule { }
