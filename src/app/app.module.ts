@@ -12,7 +12,6 @@ import { ResetPasswordComponent } from './modules/auth/reset-password/reset-pass
 import { FeatureGuard } from './core/permission/guards/feature.guard';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './core/shared/interceptors/auth.interceptor';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MainSidebarModule } from "./core/default-layout/main-sidebar/main-sidebar.module";
 import { FooterComponent } from './front/footer/footer.component';
@@ -30,7 +29,9 @@ import { PreloaderComponent } from './front/preloader/preloader.component';
 import { LoginFrontComponent } from './front/login-front/login-front.component';
 import { RegisterFrontComponent } from './front/register-front/register-front.component';
 import { AddPostComponent } from './front/add-post/add-post.component';
-
+import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,7 +63,20 @@ import { AddPostComponent } from './front/add-post/add-post.component';
     SharedAppModule,
     BrowserAnimationsModule,
     NgbModule,
-    MainSidebarModule
+    MainSidebarModule,
+    CommonModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot({
+      progressBar:true,
+      closeButton:true,
+      newestOnTop:true,
+      tapToDismiss:true,
+      positionClass:'toast-top-right',
+      timeOut: 8000,
+
+    }
+    ),
+
 ],
   providers: [
     FeatureGuard,
@@ -74,7 +88,9 @@ import { AddPostComponent } from './front/add-post/add-post.component';
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true,
-    },],
+    }
+    
+     ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

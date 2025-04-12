@@ -3,3 +3,21 @@
     height: auto; /* Maintain the aspect ratio */
     
 }
+
+
+.notification-icon {
+    position: relative;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  .notification-badge {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 3px 6px;
+    font-size: 12px;
+  }
