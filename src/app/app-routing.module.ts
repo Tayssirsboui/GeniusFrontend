@@ -14,6 +14,7 @@ import { BlogComponent } from './front/blog/blog.component';
 import { ContactComponent } from './front/contact/contact.component';
 import { RegisterFrontComponent } from './front/register-front/register-front.component';
 import { LoginFrontComponent } from './front/login-front/login-front.component';
+import { ActivateAcountComponent } from './front/activate-acount/activate-acount.component';
 
 const routes: Routes = [
 
@@ -91,6 +92,16 @@ const routes: Routes = [
 
     ]
   },
+
+  {
+    path: 'home',
+    // canActivate: [authGuard],
+    component:   HomeComponent,
+    data: {
+      title: 'Login Page'
+    }
+  },
+  
   {
     path: 'login',
     // canActivate: [authGuard],
@@ -122,7 +133,11 @@ const routes: Routes = [
       title: 'Reset Password Page'
     }
   },
-  {path: '**', redirectTo: 'dashboard'}
+  {
+    path: 'activate-account',
+    component: ActivateAcountComponent,
+  },
+  {path: '**', redirectTo: 'home'}
 ];
 
 @NgModule({

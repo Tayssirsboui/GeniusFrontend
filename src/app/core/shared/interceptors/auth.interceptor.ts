@@ -21,7 +21,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    const fingerprint =  getBrowserFingerprint();
+    const fingerprint =  getBrowserFingerprint().toString();
 
     let accessToken = ''
     if (localStorage.getItem('token')) {

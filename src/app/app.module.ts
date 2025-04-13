@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,11 +11,11 @@ import { SharedAppModule } from './core/shared/shared.module';
 import { RegisterComponent } from './modules/auth/register/register.component';
 import { ResetPasswordComponent } from './modules/auth/reset-password/reset-password.component';
 import { FeatureGuard } from './core/permission/guards/feature.guard';
-import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS,HttpClient, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './core/shared/interceptors/auth.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { MainSidebarModule } from "./core/default-layout/main-sidebar/main-sidebar.module";
+import { MainSidebarModule } from './core/default-layout/main-sidebar/main-sidebar.module';
 import { FooterComponent } from './front/footer/footer.component';
 import { HeaderComponent } from './front/header/header.component';
 import { CoursesComponent } from './front/courses/courses.component';
@@ -29,6 +30,9 @@ import { BlogDetailsComponent } from './front/blog-details/blog-details.componen
 import { PreloaderComponent } from './front/preloader/preloader.component';
 import { LoginFrontComponent } from './front/login-front/login-front.component';
 import { RegisterFrontComponent } from './front/register-front/register-front.component';
+import { ActivateAcountComponent } from './front/activate-acount/activate-acount.component';
+import { CodeInputModule } from 'angular-code-input';
+
 
 @NgModule({
   declarations: [
@@ -49,31 +53,34 @@ import { RegisterFrontComponent } from './front/register-front/register-front.co
     BlogDetailsComponent,
     PreloaderComponent,
     LoginFrontComponent,
-    RegisterFrontComponent
+    RegisterFrontComponent,
+    ActivateAcountComponent
   ],
   imports: [
-    BrowserModule,
+   
     HttpClientModule,
+    BrowserModule,
     AppRoutingModule,
     DefaultLayoutModule,
     DashboardModule,
     SharedAppModule,
     BrowserAnimationsModule,
     NgbModule,
-    MainSidebarModule
-],
+    MainSidebarModule,
+    FormsModule,
+    CodeInputModule
+
+  ],
+
   providers: [
     FeatureGuard,
-    // {
-    //   provide: LocationStrategy,
-    //   useClass: HashLocationStrategy
-    // },
     HttpClient,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true,
-    },],
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
