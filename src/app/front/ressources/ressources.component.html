@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dynamic Overlay Topics</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    .single-topic {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      transition: 0.4s;
+    }
+
+    .topic-img {
+      position: relative;
+      border-radius: 12px;
+    }
+
+    .topic-img img {
+      width: 100%;
+      display: block;
+      border-radius: 12px;
+    }
+
+    /* Overlay */
+    .single-topic::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-color: var(--overlay-color, rgba(66, 85, 164, 0.7)); /* default fallback */
+      opacity: 0;
+      transition: 0.4s;
+      z-index: 1;
+      border-radius: 12px;
+    }
+
+    /* Hover overlay */
+    .single-topic:hover::before {
+      opacity: 1;
+    }
+
+    /* Centered content */
+    .topic-content-box {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      transform: translateY(-50%);
+      text-align: center;
+      z-index: 2;
+    }
+
+    .topic-content h3 a {
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 20px;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: transform 0.3s ease, text-decoration 0.3s ease;
+      display: inline-block; /* required for transform */
+    }
+
+    .single-topic:hover .topic-content h3 a {
+      text-decoration: underline;
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Section Title -->
+  <div class="row justify-content-center">
+    <div class="col-xl-7 col-lg-8">
+      <div class="section-tittle text-center mb-55">
+        <h2>Explore top subjects</h2>
+      </div>
+    </div>
+  </div>
+
+  <!-- Topics Grid -->
+  <div class="row">
+    <!-- Topic 1 -->
+    <div class="col-lg-3 col-md-4 col-sm-6">
+      <div class="single-topic text-center mb-30">
+        <div class="topic-img">
+          <img src="assets/img/gallery/topic1.png" alt="Programming" class="dynamic-color" crossorigin="anonymous">
+          <div class="topic-content-box">
+            <div class="topic-content">
+              <h3><a href="#">Programming</a></h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Topic 2 -->
+    <div class="col-lg-3 col-md-4 col-sm-6">
+      <div class="single-topic text-center mb-30">
+        <div class="topic-img">
+          <img src="assets/img/gallery/topic4.png" alt="Design" class="dynamic-color" crossorigin="anonymous">
+          <div class="topic-content-box">
+            <div class="topic-content">
+              <h3><a href="#">Design</a></h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Color Thief Script -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.2/color-thief.umd.js"></script>
+  <script>
+    window.addEventListener('load', () => {
+      const colorThief = new ColorThief();
+      const images = document.querySelectorAll('.dynamic-color');
+
+      images.forEach(img => {
+        // Vérification de l'état de l'image (complètement chargée ou pas)
+        if (img.complete) {
+          applyOverlayColor(img);
+        } else {
+          img.addEventListener('load', () => {
+            // Attendre le chargement de l'image avant d'appliquer la couleur
+            applyOverlayColor(img);
+          });
+        }
+      });
+
+      function applyOverlayColor(img) {
+        try {
+          if (img.naturalWidth === 0) {
+            console.warn('L\'image n\'a pas pu être chargée:', img.src);
+            return; // Si l'image n'a pas été chargée, on ne continue pas
+          }
+
+          const color = colorThief.getColor(img);
+          if (color) {
+            const rgbaColor = `rgba(${color[0]}, ${color[1]}, ${color[2]}, 0.7)`;
+            const parent = img.closest('.single-topic');
+            if (parent) {
+              parent.style.setProperty('--overlay-color', rgbaColor); // Applique la couleur extraite
+            }
+          } else {
+            console.warn('Aucune couleur dominante extraite pour l\'image:', img.src);
+          }
+        } catch (error) {
+          console.error("Erreur lors de l'extraction de la couleur :", error);
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>

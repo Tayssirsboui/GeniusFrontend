@@ -14,6 +14,11 @@ import { BlogComponent } from './front/blog/blog.component';
 import { ContactComponent } from './front/contact/contact.component';
 import { RegisterFrontComponent } from './front/register-front/register-front.component';
 import { LoginFrontComponent } from './front/login-front/login-front.component';
+import { EditCategorieComponent } from './front/edit-categorie/edit-categorie.component';
+import { AddCategorieComponent } from './front/add-categorie/add-categorie.component';
+import { RessourcesComponent } from './front/ressources/ressources.component';
+import { AjoutRessourcesComponent } from './front/ajout-ressources/ajout-ressources.component';
+import { AffichageCategorieComponent } from './front/affichage-categorie/affichage-categorie.component';
 
 const routes: Routes = [
 
@@ -22,13 +27,17 @@ const routes: Routes = [
     component: FrontLayoutComponent,
     children: [
       { path: '', component: HomeComponent },
-      { path: 'courses', component: CoursesComponent },
+     // { path: 'courses', component: CoursesComponent },
       { path: 'about', component: AboutComponent },
       { path: 'contact', component: ContactComponent },
       { path: 'blog', component: BlogComponent },
       { path: 'blog-details', component: BlogDetailsComponent },
       { path: 'elements', component: ElementsComponent },
-      
+      { path: 'edit-category/:id', component: EditCategorieComponent },
+      {path: 'ajout-categorie', component:AddCategorieComponent},
+      { path: 'resource/:idCategorie', component: RessourcesComponent},
+      { path: 'courses', component:  AffichageCategorieComponent},
+      { path: 'ressources/:idCategorie/ajoutcategorie', component: AjoutRessourcesComponent },
     ]
   },
   {

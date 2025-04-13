@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -30,6 +32,13 @@ import { PreloaderComponent } from './front/preloader/preloader.component';
 import { LoginFrontComponent } from './front/login-front/login-front.component';
 import { RegisterFrontComponent } from './front/register-front/register-front.component';
 
+import { RouterModule } from '@angular/router';
+import { AjoutRessourcesComponent } from './front/ajout-ressources/ajout-ressources.component';
+import { RessourcesComponent } from './front/ressources/ressources.component';
+import { AddCategorieComponent } from './front/add-categorie/add-categorie.component';
+import { EditCategorieComponent } from './front/edit-categorie/edit-categorie.component';
+import { AffichageCategorieComponent } from './front/affichage-categorie/affichage-categorie.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,9 +58,16 @@ import { RegisterFrontComponent } from './front/register-front/register-front.co
     BlogDetailsComponent,
     PreloaderComponent,
     LoginFrontComponent,
-    RegisterFrontComponent
+    RegisterFrontComponent,
+    AffichageCategorieComponent,
+    EditCategorieComponent,
+    AddCategorieComponent,
+    RessourcesComponent,
+    AjoutRessourcesComponent,
   ],
   imports: [
+    HttpClientModule,
+    ReactiveFormsModule,
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
@@ -61,6 +77,7 @@ import { RegisterFrontComponent } from './front/register-front/register-front.co
     BrowserAnimationsModule,
     NgbModule,
     MainSidebarModule
+    
 ],
   providers: [
     FeatureGuard,

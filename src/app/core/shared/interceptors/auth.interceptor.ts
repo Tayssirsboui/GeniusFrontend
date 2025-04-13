@@ -21,11 +21,11 @@ export class AuthInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    const fingerprint =  getBrowserFingerprint();
+    const fingerprint = String(getBrowserFingerprint()); // Convert to string
 
-    let accessToken = ''
+    let accessToken = '';
     if (localStorage.getItem('token')) {
-      accessToken = localStorage.getItem('token') || ''
+      accessToken = localStorage.getItem('token') || '';
     }
     if (accessToken) {
       req = this.AddBrowserIdAndToken(req, fingerprint, accessToken);
@@ -35,14 +35,13 @@ export class AuthInterceptor implements HttpInterceptor {
       req.headers.append('Content-Type', 'application/json');
     }
     return next.handle(req).pipe(catchError(error => {
-      if(error.status == 401 && error.statusText == 'Unauthorized'){
-        localStorage.clear()
+      if (error.status == 401 && error.statusText == 'Unauthorized') {
+        localStorage.clear();
         window.location.reload();
-      }else{
+      } else {
         return throwError(() => error);
       }
-
-    }))
+    }));
   }
   AddBrowserIdAndToken(request: HttpRequest<any>, fingerprint: string, token: string) {
     debugger

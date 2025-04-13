@@ -1,0 +1,116 @@
+<div class="container">
+    <form [formGroup]="form" class="form" (ngSubmit)="onSubmit()">
+      <!-- Champ Nom -->
+      <div class="flex-column">
+        <label for="nom" >Nom de la nouvelle catégorie</label>
+        <label class="ds-label">
+          <span>
+        <input
+        class="ds-label"
+          id="nom"
+          type="text"
+          formControlName="nom"
+          class="ds_textinput"
+          placeholder="Quel est le nom de la nouvelle catégorie?"
+        />
+  
+      </span>
+    <i></i>
+  </label>
+        <div *ngIf="form.get('nom')?.invalid && form.get('nom')?.touched" class="error">
+          <small *ngIf="form.get('nom')?.errors?.['required']">Le nom est obligatoire.</small>
+          <small *ngIf="form.get('nom')?.errors?.['minlength']">Le nom doit contenir au moins 3 caractères.</small>
+        </div>
+      </div>
+  
+      <!-- Champ Domaine -->
+      <div class="flex-column">
+        <label for="domaine">Domaine</label>
+        <label class="ds-label">
+          <span>
+        <input
+          id="domaine"
+          type="text"
+          formControlName="domaine"
+          class="ds_textinput"
+          placeholder="Appartient à quel domaine?"
+        /> 
+  
+      </span>
+    <i></i>
+  </label>
+  
+        <div *ngIf="form.get('domaine')?.invalid && form.get('domaine')?.touched" class="error">
+          <small *ngIf="form.get('domaine')?.errors?.['required']">Le domaine est obligatoire.</small>
+          <small *ngIf="form.get('domaine')?.errors?.['minlength']">Le domaine doit contenir au moins 3 caractères.</small>
+        </div>
+      </div>
+  
+      <!-- Champ Description -->
+      <div class="flex-column">
+        <label for="description">Description</label>
+        <label class="ds-label">
+          <span>
+        <input
+          id="description"
+          type="text"
+          formControlName="description"
+          class="ds_textinput"
+          placeholder="Donnez une description à la catégorie."
+        />
+      </span>
+        <i></i>
+      </label>
+        <div *ngIf="form.get('description')?.invalid && form.get('description')?.touched" class="error">
+          <small *ngIf="form.get('description')?.errors?.['required']">La description est obligatoire.</small>
+          <small *ngIf="form.get('description')?.errors?.['minlength']">La description doit contenir au moins 3 caractères.</small>
+          <small *ngIf="form.get('description')?.errors?.['maxlength']">La description doit contenir au max 35 caractères.</small>
+        </div>
+      </div>
+  
+  
+  
+      <!-- Champ Image -->
+      <div class="file-upload-container">
+        <input
+          type="file"
+          id="fileInput"
+          (change)="onFileSelected($event)"
+          accept="image/*"
+          style="display: none;"
+        />
+        <table>
+          <tr>
+            <td>
+              <!-- Bouton de sélection d'image -->
+              <button type="button" class="button" (click)="triggerFileInput()">Sélectionnez une image</button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <!-- Aperçu de l'image sélectionnée dans un cadre fixe -->
+              <div class="image-preview-container" *ngIf="imagePreview">
+                <img [src]="imagePreview" alt="Aperçu de l'image" class="image-preview" />
+              </div>
+            </td>
+          </tr>
+        </table>
+        
+  
+       
+      </div>
+  
+  
+  
+  <!-- Affichage du message -->
+  <div *ngIf="message" class="message">{{ message }}</div>
+  
+  
+  
+      <!-- Bouton Soumettre -->
+      <button class="button-submit" type="submit" [disabled]="form.invalid">Ajouter</button>
+    </form>
+    
+      
+  </div>
+  

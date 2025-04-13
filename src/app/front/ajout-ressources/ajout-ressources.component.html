@@ -1,0 +1,210 @@
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<br>
+
+
+<div class="container">
+  <form [formGroup]="form" class="form" (ngSubmit)="onSubmit()">
+    <!-- Champ Nom -->
+       <!-- Champ Nom -->
+       <div class="flex-column">
+        <label for="nom">Titre</label>
+        <label class="ds-label">
+          <span>
+            <input
+              id="nom"
+              type="text"
+              formControlName="nom"
+              class="ds_textinput"
+              placeholder="Quel est le titre ?"
+            />
+          </span>
+          <i></i>
+        </label>
+        <div *ngIf="form.get('nom')?.invalid && form.get('nom')?.touched" class="error">
+          <small *ngIf="form.get('nom')?.errors?.['required']">Le Titre est obligatoire.</small>
+          <small *ngIf="form.get('nom')?.errors?.['minlength']">Le Titre doit contenir au moins 3 caractères.</small>
+        </div>
+      </div>
+       <!-- Champ description -->
+       <div class="flex-column">
+        <label for="description">Description</label>
+        <label class="ds-label">
+          <span>
+            <input
+              id="description"
+              type="text"
+              formControlName="description"
+              class="ds_textinput"
+              placeholder="Quel est la description ?"
+            />
+          </span>
+          <i></i>
+        </label>
+        <div *ngIf="form.get('description')?.invalid && form.get('description')?.touched" class="error">
+          <small *ngIf="form.get('description')?.errors?.['required']">La description est obligatoire.</small>
+          <small *ngIf="form.get('description')?.errors?.['minlength']">La description doit contenir au moins 3 caractères.</small>
+        </div>
+      </div>
+    <!-- Boutons radio -->
+    <div>
+      <table>
+        <tr>
+          <td class="radio-cell">
+            <input type="radio" id="gratuit" name="type" (change)="onTypeChange('Gratuit')" />
+            <label for="gratuit" class="label-large">Gratuit</label>
+          </td>
+          <td class="radio-cell">
+            <input type="radio" id="payant" name="type" (change)="onTypeChange('Payant')" />
+            <label for="payant" class="label-large">Payant</label>
+            <input
+            placeholder="Enter text here"
+            class="input-style spaced-input"
+            type="text"
+            [disabled]="!isPayantSelected"
+            formControlName="montant"
+          />
+       
+
+          </td>
+        </tr>
+      </table>
+      <div *ngIf="form.get('montant')?.invalid && form.get('montant')?.touched" class="error">
+        <small *ngIf="form.get('montant')?.errors?.['pattern']">Veuillez entrer un nombre valide.</small>
+      </div>
+      
+      <div *ngIf="form.get('type')?.invalid && form.get('type')?.touched" class="error">
+        <small>Veuillez sélectionner un type.</small>
+      </div>
+    </div>
+
+    <!-- Champ Image -->
+    <div class="file-upload-container">
+      <input
+        type="file"
+        id="fileInput"
+        (change)="onFilesSelected($event)"
+        accept="image/*"
+        style="display: none;"
+      />
+      <table>
+        <tr>
+          <td>
+            <button type="button" class="button" (click)="triggerFileInput()">Sélectionnez une imagepre</button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="image-preview-container" *ngIf="imagePreview">
+              <img [src]="imagePreview" alt="Aperçu de l'image" class="image-preview" />
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Choix d'option -->
+    <div class="select">
+      <div
+        class="selected"
+        data-default="All"
+        data-one="option-1"
+        data-two="option-2"
+        data-three="option-3"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512" class="arrow">
+          <path
+            d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"
+          ></path>
+        </svg>
+      </div>
+      <div class="options">
+        <div title="all">
+          <input id="all" name="option" type="radio" checked />
+          <label class="option" for="all" data-txt="All"></label>
+        </div>
+        <div title="option-1">
+          <div *ngFor="let s of statusOptions" class="radio-option">
+            <input
+              type="radio"
+              id="{{ s }}"
+              name="option"
+              [value]="s"
+              (change)="onOptionChange(s)"
+            />
+            <label class="option" [for]="s">{{ s }}</label>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+
+    <!-- Conditionnels selon l’option sélectionnée -->
+    <div *ngIf="selectedOption === 'LIEN'">
+      <input
+        placeholder="Enter le lien"
+        class="input-style"
+        type="text"
+        formControlName="lien"
+      />
+      <div *ngIf="form.get('lien')?.invalid && form.get('lien')?.touched" class="error">
+        <small>Le lien est obligatoire.</small>
+      </div>
+    </div>
+
+    <div *ngIf="selectedOption === 'ARTICLE'">
+      <input
+        placeholder="Enter ton article"
+        class="input-style"
+        type="text"
+        formControlName="article"
+      />
+      <div *ngIf="form.get('article')?.invalid && form.get('article')?.touched" class="error">
+        <small>L'article est obligatoire.</small>
+      </div>
+    </div>
+
+<!-- Champ pour uploader des fichiers -->
+<div class="input-div" *ngIf="selectedOption === 'PDF' || selectedOption === 'IMAGE'">
+  <input
+    class="input"
+    name="file"
+    type="file"
+    (change)="onFilesSelected($event)"
+    multiple
+  />
+  <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" stroke-linejoin="round"
+    stroke-linecap="round" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor"
+    class="icon">
+    <polyline points="16 16 12 12 8 16"></polyline>
+    <line y2="21" x2="12" y1="12" x1="12"></line>
+    <path
+      d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"></path>
+  </svg>
+  <!-- Afficher les noms des fichiers sélectionnés -->
+  <div *ngIf="fileNames.length > 0" class="file-names">
+    <p *ngFor="let fileName of fileNames">Fichier : {{ fileName }}</p>
+  </div>
+</div>
+    <!-- Message -->
+    <div *ngIf="message" class="message">{{ message }}</div>
+
+    <!-- Soumettre -->
+    <button class="button-submit" type="submit" [disabled]="form.invalid">Ajouter</button>
+  </form>
+</div>
+
+
+
