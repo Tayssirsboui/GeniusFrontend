@@ -14,7 +14,7 @@ import { BlogComponent } from './front/blog/blog.component';
 import { ContactComponent } from './front/contact/contact.component';
 import { RegisterFrontComponent } from './front/register-front/register-front.component';
 import { LoginFrontComponent } from './front/login-front/login-front.component';
-import { EvenementFormComponent } from './front/evenement-form/evenement-form.component';
+
 import { EvenementListComponent } from './front/evenement-list/evenement-list.component';
 
 const routes: Routes = [
@@ -30,7 +30,7 @@ const routes: Routes = [
       { path: 'blog', component: BlogComponent },
       { path: 'blog-details', component: BlogDetailsComponent },
       { path: 'elements', component: ElementsComponent },
-      { path: 'evenement/ajouter', component: EvenementFormComponent } ,
+  
       { path: 'evenement', component: EvenementListComponent },
       
     ]

@@ -1,5 +1,5 @@
 <!-- Slider Area avec bouton personnalisé -->
-<section class="slider-area slider-area2">
+<section class="slider-area slider-area2  mb-5">
     <div class="slider-active">
       <div class="single-slider slider-height2 d-flex align-items-center">
         <div class="container">
@@ -12,9 +12,12 @@
                 <p class="lead text-light mb-4">Créez votre propre événement en quelques clics</p>
   
                 <!-- Bouton personnalisé -->
-                <a routerLink="/evenement/ajouter" class="btn-custom-glow">
-                  <i class="bi bi-calendar-plus me-2"></i> Ajouter un événement
-                </a>
+                <button class="btn btn-success" (click)="ouvrirAjoutEvenement()">
+                    <i class="bi bi-plus-circle me-2"></i> Ajouter un événement
+                  </button>
+                  
+        
+                  
   
                 <!-- Breadcrumb -->
                 <nav aria-label="breadcrumb" class="mt-4">
@@ -30,67 +33,106 @@
       </div>
     </div>
   </section>
-<!-- affichage -->
-<section class="container my-5">
+
+<!-- 🔍 Recherche & tri simplifiés -->
+<section class="container mb-5">
+  <div class="row justify-content-between align-items-center bg-light p-4 rounded-4 shadow-sm">
+    
+    <!-- 🔍 Barre de recherche -->
+    <div class="col-md-6 mb-3 mb-md-0">
+      <input type="text"
+             [(ngModel)]="searchTerm"
+             (input)="filtrerEvenements()"
+             class="form-control form-control-lg rounded-3"
+             placeholder="🔍 Rechercher par titre ou lieu...">
+    </div>
+
+    <!-- 📅 Tri -->
+    <div class="col-md-4 text-md-end">
+      <select class="form-select form-select-lg rounded-3"
+              (change)="trierParDate($event.target.value)">
+        <option value="">-- Trier par date --</option>
+        <option value="asc">⬆️ Date croissante</option>
+        <option value="desc">⬇️ Date décroissante</option>
+      </select>
+    </div>
+
+  </div>
+</section>
+
+<!-- 📄 Section des événements -->
+<section id="events" class="events section">
+  <div class="container" data-aos="fade-up">
+    
     <div class="row g-4">
-      <div class="col-md-6 col-lg-4" *ngFor="let e of evenements">
-        <div class="card h-100 shadow-sm rounded-4 border-0 overflow-hidden">
-          <!-- Image -->
-          <img
-            *ngIf="e.image"
-            [src]="'http://localhost:8089/backend/' + e.image"
-            alt="Image de l'événement"
-            class="card-img-top"
-            style="height: 220px; object-fit: cover;"
-          />
-  
-          <div class="card-body d-flex flex-column justify-content-between">
-            <!-- Titre -->
-            <h5 class="card-title text-primary fw-bold mb-2">
-              {{ e.titre }}
-            </h5>
-  
-          
-  
-            <!-- Informations supplémentaires -->
-            <ul class="list-unstyled small mb-3">
-              <li class="mb-2">
-                <i class="bi bi-geo-alt-fill text-danger me-2"></i><strong>📍Lieu:</strong> {{ e.lieu }}
-              </li>
-              <li class="mb-2">
-                <i class="bi bi-calendar-event-fill text-success me-2"></i>
-                <strong> 📅Date:</strong> Du {{ e.dateDebut | date: 'shortDate' }} au {{ e.dateFin | date: 'shortDate' }}
-              </li>
-              <li>
-                
-                <span class="badge bg-light text-dark border border-secondary ms-1">{{ e.statut }}</span>
-              </li>
-            </ul>
-            <div class="d-flex justify-content-between gap-2">
-            <!-- Bouton d'action -->
-            <button
-            class="btn btn-light border-0 shadow-sm px-4 py-2 rounded-pill fw-semibold text-primary"
-            (click)="ouvrirDetail(e)"
-            style="transition: all 0.3s ease;"
-            (mouseover)="hover = true"
-            (mouseleave)="hover = false">
-            Voir description
-            <i class="bi bi-arrow-right ms-2"></i>
-          </button>
-          
-       
-    <!-- Bouton Participer -->
-    <button
-    class="btn btn-primary border-0 shadow-sm px-3 py-2 rounded-pill fw-semibold text-white"
-    (click)="ouvrirParticipation(e)">
-    Participer
-    <i class="bi bi-check-circle ms-1"></i>
-  </button>
-</div>
-          
+      <div class="col-md-6 d-flex align-items-stretch"
+           *ngFor="let e of paginatedEvenements"
+           data-aos="zoom-in-up">
+        <div class="card shadow-sm border-0 rounded-4 overflow-hidden">
+          <div class="card-img">
+            <img [src]="'http://localhost:8089/backend/' + e.image"
+                 alt="Aucune image"
+                 class="w-100" style="height: 260px; object-fit: cover;">
+          </div>
+          <div class="card-body">
+            <h5 class="card-title fw-bold">{{ e.titre }}</h5>
+            <p class="fst-italic text-center mb-1">
+              <i class="bi bi-calendar-event-fill me-2 text-muted"></i>
+              {{ e.dateDebut | date:'fullDate' }} à {{ e.dateDebut | date:'shortTime' }}
+            </p>
+            <p class="fst-italic text-center mb-1">
+              <i class="bi bi-geo-alt-fill me-2 text-muted"></i>{{ e.lieu }}
+            </p>
+            <p class="fst-italic text-center mb-1">
+              <i class="bi bi-tag-fill me-2 text-muted"></i>{{ e.categorie }}
+            </p>
+            <p class="fst-italic text-center mb-1">
+              <i class="bi bi-people-fill me-2 text-muted"></i> Capacité maximale : {{ e.nbMaxParticipants }}
+            </p>
+            <p class="card-text text-center">
+              {{ e.description | slice:0:50 }}...
+              <i class="bi bi-arrow-right-circle-fill text-primary ms-2"
+                 (click)="ouvrirDetail(e)" style="cursor:pointer"
+                 title="Voir la description complète"></i>
+            </p>
+            <div class="text-center mt-3">
+              <button class="btn btn-outline-dark fw-semibold px-4 py-2 rounded-pill shadow-sm"
+                      style="font-size: 0.9rem;"
+                      (click)="ouvrirParticipation(e)">
+                <i class="bi bi-person-plus-fill me-2"></i> Participer
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
+
+<!-- Pagination -->
+<nav class="mt-5 d-flex justify-content-center">
+  <ul class="pagination pagination-lg">
+    <li class="page-item" [class.disabled]="currentPage === 1">
+      <button class="page-link" (click)="changerPage(currentPage - 1)">
+        <i class="bi bi-chevron-left"></i>
+      </button>
+    </li>
+
+    <li class="page-item"
+        *ngFor="let page of totalPages"
+        [class.active]="page === currentPage">
+      <button class="page-link" (click)="changerPage(page)">
+        {{ page }}
+      </button>
+    </li>
+
+    <li class="page-item"
+        [class.disabled]="currentPage === totalPages.length">
+      <button class="page-link" (click)="changerPage(currentPage + 1)">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </li>
+  </ul>
+</nav>
+
+
+
   

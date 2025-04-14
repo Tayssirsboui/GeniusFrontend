@@ -14,6 +14,7 @@ export class Evenement {
     nbMaxParticipants!: number;
     statut!: StatutEvenement;
     dateCreation?: Date = new Date();
-   
+    image?: string;
+
     participations?: Participation[]; // liste des participations liées
   }

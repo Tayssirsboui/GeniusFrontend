@@ -36,5 +36,9 @@ export class EvenementService {
     createWithFormData(formData: FormData) {
       return this.http.post(`${this.apiUrl}/add-evenement`, formData);
     }
+    updateWithFormData(formData: FormData): Observable<any> {
+      return this.http.put(`${this.apiUrl}/modify-evenement`, formData);
+    }
+    
     
 }

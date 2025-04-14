@@ -30,14 +30,25 @@ import { PreloaderComponent } from './front/preloader/preloader.component';
 import { LoginFrontComponent } from './front/login-front/login-front.component';
 import { RegisterFrontComponent } from './front/register-front/register-front.component';
 import { EvenementListComponent } from './front/evenement-list/evenement-list.component';
-import { EvenementFormComponent } from './front/evenement-form/evenement-form.component';
+
 import { EvenementDetailComponent } from './front/evenement-detail/evenement-detail.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { ParticipationModalComponent } from './front/participation-modal/participation-modal.component';
+import { MatDialogModule } from '@angular/material/dialog'; 
+import { MatFormFieldModule } from '@angular/material/form-field'; 
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select'; 
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatButtonModule } from '@angular/material/button';
+import { EvenementModifierComponent } from './front/evenement-modifier/evenement-modifier.component';
+import { ToastrModule } from 'ngx-toastr';
+import { EvenementModalComponent } from './front/evenement-modal/evenement-modal.component';
+
+
 @NgModule({
-  declarations: [
-    AppComponent,
+  declarations: [ AppComponent,
     LoginComponent,
     RegisterComponent,
     ResetPasswordComponent,
@@ -56,8 +67,11 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
     LoginFrontComponent,
     RegisterFrontComponent,
     EvenementListComponent,
-    EvenementFormComponent,
-    EvenementDetailComponent
+    EvenementDetailComponent,
+    ParticipationModalComponent,
+    EvenementModifierComponent,
+    EvenementModalComponent
+   
   ],
   imports: [
     BrowserModule,
@@ -72,6 +86,20 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
     ReactiveFormsModule,
     RouterModule,
     NgbModalModule,
+    MainSidebarModule,
+    MatDialogModule, 
+    MatFormFieldModule, 
+    MatInputModule,
+    MatButtonModule,
+    MatSelectModule,    
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-right',
+      timeOut: 3000,
+      closeButton: true,
+      progressBar: true,
+      preventDuplicates: true
+    }),
 ],
   providers: [
     FeatureGuard,
