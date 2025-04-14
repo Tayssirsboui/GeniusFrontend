@@ -9,6 +9,7 @@ import { EvenementModifierComponent } from '../evenement-modifier/evenement-modi
 import * as AOS from 'aos';
 
 import { EvenementModalComponent } from '../evenement-modal/evenement-modal.component';
+import { ParticipationService } from 'src/app/services/participation.service';
 declare var bootstrap: any;
 
 @Component({
@@ -24,7 +25,8 @@ export class EvenementListComponent implements OnInit {
   constructor(
     private evenementService: EvenementService,
     private modalService: NgbModal,
-    private router: Router
+    private router: Router,
+    private participationService: ParticipationService
   ) {}
 
   ngOnInit(): void {
@@ -58,10 +60,10 @@ export class EvenementListComponent implements OnInit {
   
     modalRef.closed.subscribe((updatedEvent: Evenement) => {
       if (updatedEvent) {
-        // Remplace l'événement dans le tableau par sa version mise à jour
-        const index = this.evenementsFiltres.findIndex(ev => ev.id === updatedEvent.id);
+        const index = this.evenements.findIndex(ev => ev.id === updatedEvent.id);
         if (index !== -1) {
-          this.evenementsFiltres[index] = updatedEvent;
+          this.evenements[index] = updatedEvent;
+          this.filtrerEvenements(); // met à jour la pagination/filtrage si besoin
         }
       }
     });

@@ -37,7 +37,7 @@
     "ngx-socket-io": "^4.5.1",
     "ngx-toastr": "^19.0.0",
     "rxjs": "~7.5.0",
-    "sweetalert2": "^11.10.0",
+    "sweetalert2": "^11.18.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.3"
   },

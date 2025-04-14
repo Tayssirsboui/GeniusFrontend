@@ -4,6 +4,8 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { EvenementService } from 'src/app/services/evenement.service';
 import { StatutEvenement } from 'src/app/models/statut-evenement.enum';
 declare var bootstrap: any;
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-evenement-modal',
   templateUrl: './evenement-modal.component.html',
@@ -90,4 +92,6 @@ export class EvenementModalComponent implements OnInit {
       }
     });
   }
+
+  
 }

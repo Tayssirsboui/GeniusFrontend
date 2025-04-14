@@ -4,6 +4,7 @@ import { Participation } from 'src/app/models/participation.model';
 import { StatutParticipation } from 'src/app/models/statut-participation.enum';
 import { Evenement } from 'src/app/models/evenement.model';
 import { ParticipationService } from 'src/app/services/participation.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-participation-modal',
@@ -21,23 +22,31 @@ export class ParticipationModalComponent {
     const pad = (n: number) => n.toString().padStart(2, '0');
     return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}T${pad(date.getHours())}:${pad(date.getMinutes())}`;
   }
-
   confirmerParticipation() {
-    const participation: Participation = {
-      dateInscription: this.formatLocalDateTime(new Date()), // ✅ format: yyyy-MM-dd'T'HH:mm
-      statut: StatutParticipation.EN_ATTENTE,
-      evenement: { id: this.evenement.id } as Evenement
+    const dto = {
+      evenementId: this.evenement.id,
+      statut: StatutParticipation.EN_ATTENTE
     };
-
-    this.participationService.ajouter(participation).subscribe({
-      next: (data) => {
-        console.log('✅ Participation enregistrée :', data);
-        alert('Participation réussie 🎉');
-        this.activeModal.close();
+  
+    this.participationService.ajouter(dto).subscribe({
+      next: (updatedEvent) => {
+        Swal.fire({
+          title: 'Participation confirmée 🎉',
+          text: 'Vous êtes inscrit à cet événement avec succès !',
+          icon: 'success',
+          confirmButtonText: 'Fermer',
+          timer: 2000
+        }).then(() => {
+          this.activeModal.close(updatedEvent); // renvoie l’événement mis à jour
+        });
       },
-      error: (err) => {
-        console.error('❌ Erreur complète Angular :', err);
-        alert("Erreur lors de l'inscription ❌");
+      error: () => {
+        Swal.fire({
+          title: 'Erreur ❌',
+          text: 'Une erreur est survenue lors de l’inscription.',
+          icon: 'error',
+          confirmButtonText: 'Fermer'
+        });
       }
     });
   }
