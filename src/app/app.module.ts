@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -31,15 +31,20 @@ import { BlogDetailsComponent } from './front/blog-details/blog-details.componen
 import { PreloaderComponent } from './front/preloader/preloader.component';
 import { LoginFrontComponent } from './front/login-front/login-front.component';
 import { RegisterFrontComponent } from './front/register-front/register-front.component';
-
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { RouterModule } from '@angular/router';
 import { AjoutRessourcesComponent } from './front/ajout-ressources/ajout-ressources.component';
 import { RessourcesComponent } from './front/ressources/ressources.component';
 import { AddCategorieComponent } from './front/add-categorie/add-categorie.component';
 import { EditCategorieComponent } from './front/edit-categorie/edit-categorie.component';
 import { AffichageCategorieComponent } from './front/affichage-categorie/affichage-categorie.component';
-
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 @NgModule({
+  
   declarations: [
     AppComponent,
     LoginComponent,
@@ -64,10 +69,9 @@ import { AffichageCategorieComponent } from './front/affichage-categorie/afficha
     AddCategorieComponent,
     RessourcesComponent,
     AjoutRessourcesComponent,
+    
   ],
   imports: [
-    HttpClientModule,
-    ReactiveFormsModule,
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
@@ -75,17 +79,23 @@ import { AffichageCategorieComponent } from './front/affichage-categorie/afficha
     DashboardModule,
     SharedAppModule,
     BrowserAnimationsModule,
+    FormsModule, 
+    ReactiveFormsModule,
     NgbModule,
-    MainSidebarModule
-    
+    MainSidebarModule,
+    MatDialogModule, 
+    MatFormFieldModule, 
+    MatInputModule,
+    MatButtonModule,
+    MatSelectModule   
 ],
   providers: [
     FeatureGuard,
+    MatDatepickerModule,
     // {
     //   provide: LocationStrategy,
     //   useClass: HashLocationStrategy
     // },
-    HttpClient,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,

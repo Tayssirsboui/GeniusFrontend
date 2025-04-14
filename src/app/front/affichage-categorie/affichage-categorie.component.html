@@ -38,7 +38,7 @@
       </div>
   
       <!-- button ajouter categorie -->
-      <button class="btn"  [routerLink]="['/ajout-categorie']">Ajouter </button>
+      <button class="btn"  (click)="openModal()">Ajouter </button>
       <!-- Liste des filtres -->
       <ul class="event_filter">
           <li>
@@ -72,7 +72,7 @@
           >
             <div class="events_item">
               <div class="thumb">
-                <a [routerLink]="['/resource', categorie.idCategorie]"><img [src]="'data:image/jpeg;base64,' + categorie.image" alt="{{ categorie.nomCategorie }}"></a>
+                <a [routerLink]="['/ressource', categorie.idCategorie]"><img [src]="'data:image/jpeg;base64,' + categorie.image" alt="{{ categorie.nomCategorie }}"></a>
                 <span class="category">{{ categorie.nomCategorie }}</span>
                 <span class="price"><h6>Rejoindre</h6></span>
               </div>
@@ -130,7 +130,7 @@
           <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
         </svg>
       </li>
-      <li class="item rename"  [routerLink]="['/edit-category', categorie.idCategorie]">
+      <li class="item rename"  (click)="openModal(categorie)">
         <span class="label" >Modifier</span>
       
         

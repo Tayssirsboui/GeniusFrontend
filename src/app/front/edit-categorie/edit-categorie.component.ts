@@ -136,7 +136,7 @@ export class EditCategorieComponent implements OnInit {
       formData.append('image', this.selectedFile);
     }
 
-    this.categorieService.updateCategoryWithImage(this.categoryId, formData).subscribe(
+    this.categorieService.updateCategory(this.categoryId, formData).subscribe(
       () => {
         alert('Catégorie modifiée avec succès !');
         

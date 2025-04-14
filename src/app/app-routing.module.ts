@@ -35,7 +35,7 @@ const routes: Routes = [
       { path: 'elements', component: ElementsComponent },
       { path: 'edit-category/:id', component: EditCategorieComponent },
       {path: 'ajout-categorie', component:AddCategorieComponent},
-      { path: 'resource/:idCategorie', component: RessourcesComponent},
+      { path: 'ressource/:idCategorie', component: RessourcesComponent},
       { path: 'courses', component:  AffichageCategorieComponent},
       { path: 'ressources/:idCategorie/ajoutcategorie', component: AjoutRessourcesComponent },
     ]

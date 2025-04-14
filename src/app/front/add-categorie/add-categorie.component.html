@@ -1,116 +1,63 @@
-<div class="container">
-    <form [formGroup]="form" class="form" (ngSubmit)="onSubmit()">
-      <!-- Champ Nom -->
-      <div class="flex-column">
-        <label for="nom" >Nom de la nouvelle catégorie</label>
-        <label class="ds-label">
-          <span>
-        <input
-        class="ds-label"
-          id="nom"
-          type="text"
-          formControlName="nom"
-          class="ds_textinput"
-          placeholder="Quel est le nom de la nouvelle catégorie?"
-        />
-  
-      </span>
-    <i></i>
-  </label>
-        <div *ngIf="form.get('nom')?.invalid && form.get('nom')?.touched" class="error">
-          <small *ngIf="form.get('nom')?.errors?.['required']">Le nom est obligatoire.</small>
-          <small *ngIf="form.get('nom')?.errors?.['minlength']">Le nom doit contenir au moins 3 caractères.</small>
-        </div>
+<h2 mat-dialog-title>{{ isEditMode ? 'Modifier une catégorie' : 'Ajouter une catégorie' }}</h2>
+
+<div mat-dialog-content>
+  <form [formGroup]="form">
+
+    <!-- Nom -->
+    <mat-form-field appearance="outline" class="w-100 mb-3">
+      <mat-label>Nom de la catégorie</mat-label>
+      <input matInput formControlName="nom" placeholder="Quel est le nom de la catégorie?" />
+      <mat-error *ngIf="form.get('nom')?.invalid && (form.get('nom')?.touched || form.get('nom')?.dirty)">
+        <small *ngIf="form.get('nom')?.hasError('required')">Le nom est obligatoire.</small>
+        <small *ngIf="form.get('nom')?.hasError('minlength')">Minimum 3 caractères.</small>
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Domaine -->
+    <mat-form-field appearance="outline" class="w-100 mb-3">
+      <mat-label>Domaine</mat-label>
+      <input matInput formControlName="domaine" placeholder="Appartient à quel domaine ?" />
+      <mat-error *ngIf="form.get('domaine')?.invalid && (form.get('domaine')?.touched || form.get('domaine')?.dirty)">
+        <small *ngIf="form.get('domaine')?.hasError('required')">Le domaine est obligatoire.</small>
+        <small *ngIf="form.get('domaine')?.hasError('minlength')">Minimum 3 caractères.</small>
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Description -->
+    <mat-form-field appearance="outline" class="w-100 mb-3">
+      <mat-label>Description</mat-label>
+      <textarea matInput formControlName="description" placeholder="Description de la catégorie" rows="3"></textarea>
+      <mat-error *ngIf="form.get('description')?.invalid && (form.get('description')?.touched || form.get('description')?.dirty)">
+        <small *ngIf="form.get('description')?.hasError('required')">Obligatoire.</small>
+        <small *ngIf="form.get('description')?.hasError('minlength')">Minimum 3 caractères.</small>
+        <small *ngIf="form.get('description')?.hasError('maxlength')">Maximum 35 caractères.</small>
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Image -->
+    <div class="mb-3">
+      <button mat-raised-button color="primary" type="button" (click)="triggerFileInput()">Sélectionner une image</button>
+      <input type="file" id="fileInput" (change)="onFileSelected($event)" accept="image/*" style="display: none;" />
+      <div *ngIf="form.controls['image'].hasError('required') && form.controls['image'].touched">
+        L'image est obligatoire.
       </div>
-  
-      <!-- Champ Domaine -->
-      <div class="flex-column">
-        <label for="domaine">Domaine</label>
-        <label class="ds-label">
-          <span>
-        <input
-          id="domaine"
-          type="text"
-          formControlName="domaine"
-          class="ds_textinput"
-          placeholder="Appartient à quel domaine?"
-        /> 
-  
-      </span>
-    <i></i>
-  </label>
-  
-        <div *ngIf="form.get('domaine')?.invalid && form.get('domaine')?.touched" class="error">
-          <small *ngIf="form.get('domaine')?.errors?.['required']">Le domaine est obligatoire.</small>
-          <small *ngIf="form.get('domaine')?.errors?.['minlength']">Le domaine doit contenir au moins 3 caractères.</small>
-        </div>
-      </div>
-  
-      <!-- Champ Description -->
-      <div class="flex-column">
-        <label for="description">Description</label>
-        <label class="ds-label">
-          <span>
-        <input
-          id="description"
-          type="text"
-          formControlName="description"
-          class="ds_textinput"
-          placeholder="Donnez une description à la catégorie."
-        />
-      </span>
-        <i></i>
-      </label>
-        <div *ngIf="form.get('description')?.invalid && form.get('description')?.touched" class="error">
-          <small *ngIf="form.get('description')?.errors?.['required']">La description est obligatoire.</small>
-          <small *ngIf="form.get('description')?.errors?.['minlength']">La description doit contenir au moins 3 caractères.</small>
-          <small *ngIf="form.get('description')?.errors?.['maxlength']">La description doit contenir au max 35 caractères.</small>
-        </div>
-      </div>
-  
-  
-  
-      <!-- Champ Image -->
-      <div class="file-upload-container">
-        <input
-          type="file"
-          id="fileInput"
-          (change)="onFileSelected($event)"
-          accept="image/*"
-          style="display: none;"
-        />
-        <table>
-          <tr>
-            <td>
-              <!-- Bouton de sélection d'image -->
-              <button type="button" class="button" (click)="triggerFileInput()">Sélectionnez une image</button>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <!-- Aperçu de l'image sélectionnée dans un cadre fixe -->
-              <div class="image-preview-container" *ngIf="imagePreview">
-                <img [src]="imagePreview" alt="Aperçu de l'image" class="image-preview" />
-              </div>
-            </td>
-          </tr>
-        </table>
-        
-  
-       
-      </div>
-  
-  
-  
-  <!-- Affichage du message -->
-  <div *ngIf="message" class="message">{{ message }}</div>
-  
-  
-  
-      <!-- Bouton Soumettre -->
-      <button class="button-submit" type="submit" [disabled]="form.invalid">Ajouter</button>
-    </form>
-    
-      
-  </div>
-  
+    </div>
+
+    <!-- Aperçu image -->
+    <div *ngIf="imagePreview" class="mb-3" style="text-align: center;">
+      <img [src]="imagePreview" alt="Aperçu de l'image" style="max-width: 100%; max-height: 200px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);" />
+    </div>
+
+    <!-- Message image -->
+    <div *ngIf="message" class="text-danger mb-3">{{ message }}</div>
+
+    <!-- Actions -->
+    <div mat-dialog-actions align="end">
+      <button mat-stroked-button color="warn" type="button" (click)="onCancel()">Annuler</button>
+      <button mat-flat-button color="primary" [disabled]="form.invalid" (click)="onSubmit()">
+        {{ isEditMode ? 'Modifier' : 'Ajouter' }}
+      </button>
+    </div>
+
+  </form>
+</div>

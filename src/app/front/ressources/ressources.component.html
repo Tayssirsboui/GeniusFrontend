@@ -1,3 +1,13 @@
+
+<br>
+<br>
+<br>
+<br>
+<br><br>
+<br>
+<br>
+<br>
+<br>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -81,32 +91,24 @@
   <!-- Topics Grid -->
   <div class="row">
     <!-- Topic 1 -->
-    <div class="col-lg-3 col-md-4 col-sm-6">
-      <div class="single-topic text-center mb-30">
+    <div class="col-lg-3 col-md-4 col-sm-6" *ngFor="let ressource of ressources">
+      <div class="single-topic text-center mb-30"  >
         <div class="topic-img">
-          <img src="assets/img/gallery/topic1.png" alt="Programming" class="dynamic-color" crossorigin="anonymous">
+          <img
+          [src]="'data:image/jpeg;base64,' + ressource.image"
+          alt="{{ ressource.titre }}"
+          class="dynamic-color"
+          crossorigin="anonymous">
           <div class="topic-content-box">
             <div class="topic-content">
-              <h3><a href="#">Programming</a></h3>
+              <h3><a [routerLink]="['/detail-ressource', ressource.idRessource]">
+                {{ ressource.titre }}
+                                     </a></h3>
             </div>
           </div>
         </div>
       </div>
-    </div>
-
-    <!-- Topic 2 -->
-    <div class="col-lg-3 col-md-4 col-sm-6">
-      <div class="single-topic text-center mb-30">
-        <div class="topic-img">
-          <img src="assets/img/gallery/topic4.png" alt="Design" class="dynamic-color" crossorigin="anonymous">
-          <div class="topic-content-box">
-            <div class="topic-content">
-              <h3><a href="#">Design</a></h3>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    </div> 
   </div>
 
   <!-- Color Thief Script -->

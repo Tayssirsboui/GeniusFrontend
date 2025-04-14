@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Categorie } from 'src/classes-categorie/Categorie';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { FullResources, Ressource } from 'src/classes-categorie/ressource';
 
 @Injectable({
   providedIn: 'root'
@@ -34,7 +35,7 @@ export class CategorieService {
     return this.http.delete<void>(url);
 
   }
-  updateCategoryWithImage(id: number, formData: FormData) {
+  updateCategory(id: number, formData: FormData) {
     return this.http.put(`http://localhost:5020/categorie/modify-categorie/${id}`, formData);
   }
   
@@ -43,6 +44,8 @@ export class CategorieService {
     return this.http.get(`http://localhost:5020/categorie/retrieve-categorie-with-image/${id}`);
   }
 
-
+getAllResourcesbyIdCategorie(id: number): Observable<FullResources> {
+  return this.http.get<FullResources>(`http://localhost:5020/categorie/${id}`);
+}
   
 }

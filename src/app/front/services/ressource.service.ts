@@ -17,9 +17,13 @@ export class RessourceService {
 
   // Méthode pour récupérer les ressources
   getRessources(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/retrieve-all-ressources`);
+    return this.http.get<any[]>(`${this.apiUrl}`);
   }
-
+  //méthode pour mettre à jour les ressources
+  updateRessource(id: number, formData: FormData) {
+    return this.http.put(`${this.apiUrl}/modify-ressource/${id}`, formData);
+  }
+  
   // Méthode pour supprimer une ressource
   deleteRessource(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/remove-ressource/${id}`);
@@ -27,7 +31,7 @@ export class RessourceService {
 
   // Méthode pour récupérer une ressource par ID
   getRessourceById(id: number): Observable<any> {
-    return this.http.get(`${this.apiUrl}/retrieve-ressource/${id}`);
+    return this.http.get(`${this.apiUrl}/${id}`);
   }
 }
 

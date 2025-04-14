@@ -1,9 +1,12 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { CategorieService } from 'src/app/front/services/service-categories.service';
 import { Categorie } from 'src/classes-categorie/Categorie';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { AddCategorieComponent } from '../add-categorie/add-categorie.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-affichage-categorie',
   templateUrl: './affichage-categorie.component.html',
@@ -11,12 +14,37 @@ import { Router } from '@angular/router';
 })
 export class AffichageCategorieComponent {
 
+  constructor(private http: HttpClient,private modalService: NgbModal, private rs: CategorieService,private router: Router,private dialog: MatDialog,private cdRef: ChangeDetectorRef) {}
+
+
+  categories: Categorie[] = [];
+  openModal(categorie?: Categorie) {
+   
+    const dialogRef = this.dialog.open(AddCategorieComponent, {
+      width: '600px',
+      data: categorie || {}  // Si tu passes une catgorie, c'est une modif
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.rs. getcategorie().subscribe(data => {
+          this.categories = data;
+          this.cdRef.detectChanges(); 
+          this.ngOnInit();
+
+        });
+      }
+    });
+  
+}
+
+
 
   scrollToTop(): void {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  categories: Categorie[] = []; // Liste des catégories récupérées
+ 
   filteredCategories: Categorie[] = []; // Liste des catégories filtrées
   selectedFilter: string = '*'; // Filtre par défaut (toutes les catégories)
   listcategorie!: Categorie[]; // Liste des catégories pour d'autres opérations
@@ -60,7 +88,6 @@ export class AffichageCategorieComponent {
     this.isPressing = false;
   }
 
-  constructor(private http: HttpClient, private rs: CategorieService,private router: Router) {}
 
   activeCardId: number | null = null;
 
@@ -78,6 +105,7 @@ export class AffichageCategorieComponent {
       (data) => {
         this.categories = data; // Toutes les catégories récupérées
         this.filteredCategories = data; // Initialiser les catégories filtrées avec toutes les catégories
+        
 
         // Appliquer la classe "show" à toutes les catégories pour l'animation initiale
         setTimeout(() => {
