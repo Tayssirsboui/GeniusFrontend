@@ -7,4 +7,5 @@ export class Post {
     imageUrl!: string; 
     createdBy!: string;
     createdAt!: Date;
+    commentsCount!: number; // Ajoutez cette propriété pour stocker le nombre de commentaires
  }

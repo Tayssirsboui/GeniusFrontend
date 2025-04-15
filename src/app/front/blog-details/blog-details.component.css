@@ -1,4 +1,22 @@
+/* Dans votre fichier CSS */
+.edit-comment-form textarea {
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 8px;
+  resize: vertical;
+}
 
+.comment-card {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.comment-card.editing {
+  background-color: #f8f9fa;
+  border-left: 3px solid #0d6efd;
+  padding-left: 10px;
+}/*commentaire*/
 
 .card:hover {
   transform: translateY(-5px);

@@ -16,6 +16,7 @@ export class BlogService {
   } 
   getPosts() {
     return this.http.get<Post[]>(this.baseUrlPost)
+    
   }
   
 
@@ -57,5 +58,16 @@ export class BlogService {
      updateComment(commentId: number, userId: number, comment: any): Observable<any> {
       return this.http.put(`${this.baseUrlComment}/${commentId}/user/${userId}`, comment);
     }
+    @Injectable({
+      providedIn: 'root'
+    })
+  
+      private baseUrl = 'http://localhost:5100/api/facebook';
+    
+    
+      postToFacebook(message: string): Observable<any> {
+        return this.http.post(`${this.baseUrl}/post`, { message });
+      }
+    
     
   }

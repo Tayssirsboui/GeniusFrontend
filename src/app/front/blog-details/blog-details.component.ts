@@ -14,6 +14,7 @@ export class BlogDetailsComponent {
   commentForm: FormGroup;
   editMode: boolean = false;
 selectedCommentId: number | null = null;
+newCommentContent: string = ''; // Pour stocker le contenu du nouveau commentaire
 userId: number = 1; // Remplacez par l'ID de l'utilisateur connecté
   constructor(private bs :BlogService,private Ac:ActivatedRoute,private route:Router,private fb: FormBuilder){//ActivatedRoute bch najmo nhezo l id m url
   
@@ -25,6 +26,7 @@ userId: number = 1; // Remplacez par l'ID de l'utilisateur connecté
     id!:number;
     post!:Post;
     comments!:Comment[];
+    commentsCount!: number; // Ajoutez cette propriété pour stocker le nombre de commentaires
 
 
 
@@ -37,8 +39,32 @@ userId: number = 1; // Remplacez par l'ID de l'utilisateur connecté
     
       this.bs.getcommentsByPostId(this.id).subscribe(data => {
         this.comments = data;
+        
+        // Ajoutez cette constante pour calculer le nombre de commentaires
+        const commentsCount = data.length;
+        console.log(`Nombre de commentaires pour ce post: ${commentsCount}`);
+        
+        // Si vous voulez stocker ce count dans le post
+        if (this.post) {
+          this.post.commentsCount = commentsCount;
+        }
       });
     }
+    calculateCommentsCount(): number {
+      if (this.comments) {
+        const commentsCount = this.comments.length;
+        console.log(`Nombre actuel de commentaires: ${commentsCount}`);
+        
+        // Mettre à jour la propriété du post si nécessaire
+        if (this.post) {
+          this.post.commentsCount = commentsCount;
+        }
+        
+        return commentsCount;
+      }
+      return 0;
+    }
+    
     
   //   addComment() {
    
@@ -47,25 +73,60 @@ userId: number = 1; // Remplacez par l'ID de l'utilisateur connecté
   // );
   //  }
   
-  addComment() {
+  // addComment() {
+  //   const commentData = {
+  //     ...this.commentForm.value,
+  //     postId: this.id, // Assurez-vous que 'this.id' est défini et contient l'ID du post
+  //     userId: this.userId // Assurez-vous que 'this.userId' contient l'ID de l'utilisateur connecté
+  //   };
+  
+  //   if (this.editMode && this.selectedCommentId) {
+  //     console.log("Mise à jour du commentaire ID :", this.selectedCommentId); // 👈 debug
+  //     this.bs.updateComment(this.selectedCommentId!, this.userId, commentData).subscribe(() => {
+  //       alert("Commentaire modifié avec succès !");
+  //       this.ngOnInit(); // Recharger les commentaires après modification
+  //       this.resetForm(); // Réinitialiser le formulaire après modification
+  //     });
+  //   } else {
+  //     this.bs.addComment(this.id, this.userId, commentData).subscribe(() => {
+  //       alert("Commentaire ajouté avec succès !");
+  //       this.ngOnInit(); // Recharger les commentaires après ajout
+  //       this.resetForm(); // Réinitialiser le formulaire après ajout
+  //     });
+  //   }
+  // }
+  addComment(): void {
+    // Récupérer et nettoyer le contenu
+    const trimmedDescription = this.commentForm.value.description?.trim();
+  
+    if (!trimmedDescription) {
+      alert("Le champ commentaire est vide !");
+      return;
+    }
+  
+    // Mettre à jour manuellement la valeur du formulaire nettoyée
+    this.commentForm.patchValue({
+      description: trimmedDescription
+    });
+  
     const commentData = {
       ...this.commentForm.value,
-      postId: this.id, // Assurez-vous que 'this.id' est défini et contient l'ID du post
-      userId: this.userId // Assurez-vous que 'this.userId' contient l'ID de l'utilisateur connecté
+      postId: this.id,
+      userId: this.userId
     };
   
     if (this.editMode && this.selectedCommentId) {
-      console.log("Mise à jour du commentaire ID :", this.selectedCommentId); // 👈 debug
+      console.log("Mise à jour du commentaire ID :", this.selectedCommentId);
       this.bs.updateComment(this.selectedCommentId!, this.userId, commentData).subscribe(() => {
         alert("Commentaire modifié avec succès !");
-        this.ngOnInit(); // Recharger les commentaires après modification
-        this.resetForm(); // Réinitialiser le formulaire après modification
+        this.ngOnInit();
+        this.resetForm();
       });
     } else {
       this.bs.addComment(this.id, this.userId, commentData).subscribe(() => {
         alert("Commentaire ajouté avec succès !");
-        this.ngOnInit(); // Recharger les commentaires après ajout
-        this.resetForm(); // Réinitialiser le formulaire après ajout
+        this.ngOnInit();
+        this.resetForm();
       });
     }
   }

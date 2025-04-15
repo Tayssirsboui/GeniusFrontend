@@ -43,7 +43,7 @@
                </div>
              </div>
              <div class="post-meta">
-               <span class="date"><i class="bi bi-calendar3"></i> {{post.createdAt}}</span>
+               <span class="date"><i class="bi bi-calendar3"></i>{{ post.createdAt | date:'d MMM yyyy' }}</span>
                <span class="divider">•</span>
                <span class="comments"><i class="bi bi-chat-text"></i> 18 Comments</span>
              </div>
@@ -60,7 +60,7 @@
        <div class="container">
          <div class="blog-comments-3">
            <div class="section-header">
-             <h3>Discussion <span class="comment-count">(2)</span></h3>
+             <h3>Nombre de commentaires:  <span class="comment-count">({{ post?.commentsCount || 0 }})</span></h3>
            </div>
  
            <div class="comments-wrapper">
@@ -72,7 +72,7 @@
                    <img src="assets/img/blog/person-f-9.webp" alt="User avatar" loading="lazy">
                    <div class="meta">
                      <h4 class="name">{{comment.createdBy}}</h4>
-                     <span class="date"><i class="bi bi-calendar3"></i> {{comment.createdAt}}</span>
+                     <span class="date"><i class="bi bi-calendar3"></i> {{ comment.createdAt | date:'d MMM yyyy' }}</span>
                    </div>
                  </div>
                </div>

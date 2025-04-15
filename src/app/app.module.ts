@@ -4,11 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DefaultLayoutModule } from './core/default-layout/default-layout.module';
-import { DashboardModule } from './modules/dashboard/dashboard.module';
-import { LoginComponent } from './modules/auth/login/login.component';
 import { SharedAppModule } from './core/shared/shared.module';
-import { RegisterComponent } from './modules/auth/register/register.component';
-import { ResetPasswordComponent } from './modules/auth/reset-password/reset-password.component';
 import { FeatureGuard } from './core/permission/guards/feature.guard';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './core/shared/interceptors/auth.interceptor';
@@ -32,12 +28,16 @@ import { AddPostComponent } from './front/add-post/add-post.component';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { FooterBackComponent } from './back/footer-back/footer-back.component';
+import { SidebarBackComponent } from './back/sidebar-back/sidebar-back.component';
+import { HeaderBackComponent } from './back/header-back/header-back.component';
+import { BackLayoutComponent } from './back/back-layout/back-layout.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    RegisterComponent,
-    ResetPasswordComponent,
+  
     FooterComponent,
     HeaderComponent,
     CoursesComponent,
@@ -52,14 +52,18 @@ import { ToastrModule } from 'ngx-toastr';
     PreloaderComponent,
     LoginFrontComponent,
     RegisterFrontComponent,
+    BackLayoutComponent,
+    HeaderBackComponent,
+    SidebarBackComponent,
+    FooterBackComponent,
     AddPostComponent
-  ],
+  // Removed from imports and added to providers
+   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     DefaultLayoutModule,
-    DashboardModule,
     SharedAppModule,
     BrowserAnimationsModule,
     NgbModule,
@@ -74,23 +78,27 @@ import { ToastrModule } from 'ngx-toastr';
       positionClass:'toast-top-right',
       timeOut: 8000,
 
-    }
-    ),
+    }),
+  ],
 
-],
   providers: [
     FeatureGuard,
     // {
     //   provide: LocationStrategy,
     //   useClass: HashLocationStrategy
     // },
+    
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true,
-    }
+    },
     
      ],
   bootstrap: [AppComponent]
-})
-export class AppModule { }
+  
+}
+)
+export class AppModule { 
+  
+}

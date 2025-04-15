@@ -65,5 +65,36 @@ userId: number = 1; // Remplacez par l'ID de l'utilisateur connecté
         this.rt.navigateByUrl('/blog');
       });
     }
+    this.bs.postToFacebook("Bonjour depuis Angular + Spring Boot !")
+  .subscribe({
+    next: () => alert("Message publié sur Facebook !"),
+    error: err => alert("Erreur de publication : " + err.error.message)
+  });
+
   }
+  // addPosts() {
+  //   const postData = {
+  //     ...this.postForm.value,
+  //     postId: this.id,
+  //     userId: this.userId
+  //   };
+  
+  //   const facebookMessage = `📝 Nouveau post: ${postData.title}\n\n${postData.content.substring(0, 100)}...`;
+  
+  //   if (this.id) {
+  //     this.bs.updatePost(this.id, this.userId, postData).subscribe(() => {
+       
+  //       this.rt.navigateByUrl('/blog-details/' + this.id);
+  //     });
+  //   } else {
+  //     this.bs.addPost(postData).subscribe(() => {
+  //       this.bs.postToFacebook(facebookMessage).subscribe({
+  //         next: () => alert("Ajouté et publié sur Facebook !"),
+  //         error: err => alert("Erreur Facebook : " + err)
+  //       });
+  //       this.rt.navigateByUrl('/blog');
+  //     });
+  //   }
+  // }
+  
 }
