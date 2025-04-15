@@ -45,6 +45,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { EvenementModifierComponent } from './front/evenement-modifier/evenement-modifier.component';
 import { ToastrModule } from 'ngx-toastr';
 import { EvenementModalComponent } from './front/evenement-modal/evenement-modal.component';
+import { ListeAttenteModalComponent } from './front/liste-attente-modal/liste-attente-modal.component';
 
 
 @NgModule({
@@ -70,7 +71,8 @@ import { EvenementModalComponent } from './front/evenement-modal/evenement-modal
     EvenementDetailComponent,
     ParticipationModalComponent,
     EvenementModifierComponent,
-    EvenementModalComponent
+    EvenementModalComponent,
+    ListeAttenteModalComponent
    
   ],
   imports: [

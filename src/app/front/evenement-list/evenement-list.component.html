@@ -119,6 +119,14 @@
                       (click)="ouvrirParticipation(e)">
                 <i class="bi bi-person-plus-fill me-2"></i> Participer
               </button>
+          <!-- 🔁 Bouton pour s’inscrire à la liste d’attente -->
+<div class="text-center mt-2" *ngIf="e.participations?.length >= e.nbMaxParticipants">
+  <button class="btn btn-outline-danger fw-semibold px-4 py-2 rounded-pill shadow-sm"
+          (click)="ouvrirListeAttenteModal(e)">
+    <i class="bi bi-clock-history me-2"></i> Liste d’attente
+  </button>
+</div>
+        
             </div>
           </div>
         </div>

@@ -10,6 +10,7 @@ import * as AOS from 'aos';
 
 import { EvenementModalComponent } from '../evenement-modal/evenement-modal.component';
 import { ParticipationService } from 'src/app/services/participation.service';
+import { ListeAttenteModalComponent } from '../liste-attente-modal/liste-attente-modal.component';
 declare var bootstrap: any;
 
 @Component({
@@ -67,6 +68,10 @@ export class EvenementListComponent implements OnInit {
         }
       }
     });
+  }
+  ouvrirListeAttenteModal(evenement: Evenement) {
+    const modalRef = this.modalService.open(ListeAttenteModalComponent, { centered: true });
+    modalRef.componentInstance.evenement = evenement;
   }
   
 
