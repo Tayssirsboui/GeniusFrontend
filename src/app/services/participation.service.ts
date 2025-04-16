@@ -9,6 +9,7 @@ import { Evenement } from '../models/evenement.model';
 })
 export class ParticipationService {
   private apiUrl = 'http://localhost:8089/backend/participations';
+  private evenementUrl = 'http://localhost:8089/backend/evenements';
 
   constructor(private http: HttpClient) {}
 
@@ -19,6 +20,16 @@ export class ParticipationService {
   ajouter(participationDto: { evenementId: number; statut: string }): Observable<Evenement> {
     return this.http.post<Evenement>(`${this.apiUrl}/add-participation`, participationDto);
   }
+    // ❌ Annuler une participation
+    annuler(id: number): Observable<void> {
+      return this.http.delete<void>(`${this.apiUrl}/annuler/${id}`);
+    }
   
+    // 🔄 Obtenir un événement mis à jour avec ses participations
+    getEvenementById(id: number): Observable<Evenement> {
+      return this.http.get<Evenement>(`${this.evenementUrl}/retrieve-evenement/${id}`);
+    }
+  
+    
   
 }

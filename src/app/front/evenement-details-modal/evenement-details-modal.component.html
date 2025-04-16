@@ -1,0 +1,24 @@
+<div class="modal-header">
+    <h5 class="modal-title">📅 Détails de l’événement</h5>
+    <button type="button" class="btn-close" (click)="activeModal.dismiss()"></button>
+  </div>
+  
+  <div class="modal-body">
+    <p><strong>🧾 Titre :</strong> {{ titre }}</p>
+    <p><strong>📍 Lieu :</strong> {{ lieu }}</p>
+    <p><strong>🕒 Début :</strong> {{ start }}</p>
+    <p><strong>⏳ Fin :</strong> {{ end }}</p>
+  </div>
+  
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary" (click)="activeModal.close()">Fermer</button>
+    <div class="modal-footer border-0 d-flex justify-content-between">
+        <button type="button" class="btn btn-outline-danger" (click)="supprimerParticipation()">
+          <i class="bi bi-trash-fill me-1"></i> Supprimer la participation
+        </button>
+      
+      *
+      </div>
+      
+  </div>
+  

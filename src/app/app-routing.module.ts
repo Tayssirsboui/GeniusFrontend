@@ -16,6 +16,7 @@ import { RegisterFrontComponent } from './front/register-front/register-front.co
 import { LoginFrontComponent } from './front/login-front/login-front.component';
 
 import { EvenementListComponent } from './front/evenement-list/evenement-list.component';
+import { CalendrierUtilisateurComponent } from './front/calendrier-utilisateur/calendrier-utilisateur.component';
 
 const routes: Routes = [
 
@@ -30,7 +31,8 @@ const routes: Routes = [
       { path: 'blog', component: BlogComponent },
       { path: 'blog-details', component: BlogDetailsComponent },
       { path: 'elements', component: ElementsComponent },
-  
+      { path: 'calendrier', component: CalendrierUtilisateurComponent },
+
       { path: 'evenement', component: EvenementListComponent },
       
     ]

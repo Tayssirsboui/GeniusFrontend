@@ -39,6 +39,10 @@ export class EvenementService {
     updateWithFormData(formData: FormData): Observable<any> {
       return this.http.put(`${this.apiUrl}/modify-evenement`, formData);
     }
+    getEvenementsParUtilisateur(utilisateurId: number): Observable<Evenement[]> {
+      return this.http.get<Evenement[]>(`http://localhost:8089/backend/participations/evenements-par-utilisateur/${utilisateurId}`);
+    }
+    
     
     
 }

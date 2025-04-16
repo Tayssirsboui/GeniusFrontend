@@ -46,7 +46,9 @@ import { EvenementModifierComponent } from './front/evenement-modifier/evenement
 import { ToastrModule } from 'ngx-toastr';
 import { EvenementModalComponent } from './front/evenement-modal/evenement-modal.component';
 import { ListeAttenteModalComponent } from './front/liste-attente-modal/liste-attente-modal.component';
-
+import { FullCalendarModule } from '@fullcalendar/angular';
+import { CalendrierUtilisateurComponent } from './front/calendrier-utilisateur/calendrier-utilisateur.component';
+import { EvenementDetailsModalComponent } from './front/evenement-details-modal/evenement-details-modal.component'; // ✅
 
 @NgModule({
   declarations: [ AppComponent,
@@ -72,7 +74,9 @@ import { ListeAttenteModalComponent } from './front/liste-attente-modal/liste-at
     ParticipationModalComponent,
     EvenementModifierComponent,
     EvenementModalComponent,
-    ListeAttenteModalComponent
+    ListeAttenteModalComponent,
+    CalendrierUtilisateurComponent,
+    EvenementDetailsModalComponent
    
   ],
   imports: [
@@ -93,7 +97,8 @@ import { ListeAttenteModalComponent } from './front/liste-attente-modal/liste-at
     MatFormFieldModule, 
     MatInputModule,
     MatButtonModule,
-    MatSelectModule,    
+    MatSelectModule,
+    FullCalendarModule,    
     BrowserAnimationsModule,
     ToastrModule.forRoot({
       positionClass: 'toast-top-right',
@@ -102,6 +107,7 @@ import { ListeAttenteModalComponent } from './front/liste-attente-modal/liste-at
       progressBar: true,
       preventDuplicates: true
     }),
+    
 ],
   providers: [
     FeatureGuard,

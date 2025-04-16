@@ -59,15 +59,27 @@ export class EvenementListComponent implements OnInit {
     const modalRef = this.modalService.open(ParticipationModalComponent, { centered: true });
     modalRef.componentInstance.evenement = e;
   
+    // modalRef.closed.subscribe((updatedEvent: Evenement) => {
+    //   if (updatedEvent) {
+    //     const index = this.evenements.findIndex(ev => ev.id === updatedEvent.id);
+    //     if (index !== -1) {
+    //       this.evenements[index] = updatedEvent;
+    //       this.filtrerEvenements(); // met à jour la pagination/filtrage si besoin
+    //     }
+    //   }
+    // });
     modalRef.closed.subscribe((updatedEvent: Evenement) => {
       if (updatedEvent) {
-        const index = this.evenements.findIndex(ev => ev.id === updatedEvent.id);
-        if (index !== -1) {
-          this.evenements[index] = updatedEvent;
-          this.filtrerEvenements(); // met à jour la pagination/filtrage si besoin
-        }
+        this.participationService.getEvenementById(updatedEvent.id).subscribe(freshEvent => {
+          const index = this.evenements.findIndex(ev => ev.id === freshEvent.id);
+          if (index !== -1) {
+            this.evenements[index] = freshEvent;
+            this.filtrerEvenements();
+          }
+        });
       }
     });
+    
   }
   ouvrirListeAttenteModal(evenement: Evenement) {
     const modalRef = this.modalService.open(ListeAttenteModalComponent, { centered: true });
